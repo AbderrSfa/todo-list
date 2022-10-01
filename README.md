@@ -18,3 +18,5 @@ There is a Makefile in the root directory.
 - Then, in a different terminal, go to the src folder and run `npm run start` to start the next.js frontend.
 
 You can access the app on `localhost:3000`
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/58333462/193413778-e43e39cd-8757-409e-9883-a396d53cde58.gif)
