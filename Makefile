@@ -8,10 +8,10 @@ RESET = \033[0m
 all: credit build
 
 build:
-	@echo "$(BLUE)██████████████████████████ Building Backend ███████████████████████████$(RESET)"
-	cd api; npm install
-	@echo "$(BLUE)██████████████████████████ Building Frontend ███████████████████████████$(RESET)"
-	cd src; npm install; npm run build
+	@echo "$(BLUE)██████████████████████████ Building app ███████████████████████████$(RESET)"
+	npm install
+	npm run build
+	npm run start
 
 credit:
 	@echo "$(YELLOW)██████████████████████████ Todo List ███████████████████████████$(RESET)"

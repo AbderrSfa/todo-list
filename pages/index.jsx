@@ -19,7 +19,7 @@ export default function Home() {
 		e.preventDefault();
 		if (!task) return;
 		try {
-			await axios.post('http://localhost:4040/api/todos', { title: task });
+			await axios.post('http://localhost:3000/api/todos', { title: task });
 			setTask('');
 			setTaskList(await getTasks());
 		} catch (error) {
@@ -29,7 +29,7 @@ export default function Home() {
 
 	const handleDelete = async (id) => {
 		try {
-			await axios.delete(`http://localhost:4040/api/todos/${id}`);
+			await axios.delete(`http://localhost:3000/api/todos/${id}`);
 			setTaskList(await getTasks());
 		} catch (error) {
 			console.log(error);
@@ -38,7 +38,7 @@ export default function Home() {
 
 	const handleComplete = async (id, done) => {
 		try {
-			await axios.patch(`http://localhost:4040/api/todos/${id}`, {done});
+			await axios.patch(`http://localhost:3000/api/todos/${id}`, {done});
 			setTaskList(await getTasks());
 		} catch (error) {
 			console.log(error);
