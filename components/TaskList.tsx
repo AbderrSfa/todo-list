@@ -1,11 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCircleCheck as faCheckRegular } from '@fortawesome/free-regular-svg-icons';
+import Task from '../helpers/typings';
 
-const TaskList = ({ taskList, handleDelete, handleComplete }) => {
+type Props = {
+	taskList: Task[];
+	handleDelete: (id: number) => Promise<void>;
+	handleComplete: (id: number, done: boolean) => Promise<void>;
+};
+
+const TaskList = ({ taskList, handleDelete, handleComplete }: Props) => {
 	return (
 		<div className='mt-8 w-full'>
-			{taskList.map(task => {
+			{taskList.map((task) => {
 				const { id, title, done } = task;
 				return (
 					<article key={id} className='flex justify-between my-4'>
@@ -15,7 +22,7 @@ const TaskList = ({ taskList, handleDelete, handleComplete }) => {
 							<p className='text-xl font-medium'>{title}</p>
 						)}
 						<div className='ml-4'>
-							<button type='button' onClick={() => {}}>
+							<button type='button'>
 								{done ? (
 									<FontAwesomeIcon
 										icon={faCircleCheck}
