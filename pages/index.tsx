@@ -1,12 +1,20 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import {
+	ChangeEvent,
+	FormEvent,
+	FormEventHandler,
+	useEffect,
+	useState,
+} from 'react';
 import TaskList from '../components/TaskList';
 import axios from 'axios';
 import { getTasks } from '../helpers/getTasks';
 
+import Task from '../helpers/typings';
+
 export default function Home() {
 	const [task, setTask] = useState('');
-	const [taskList, setTaskList] = useState([]);
+	const [taskList, setTaskList] = useState<Task[]>([]);
 
 	useEffect(() => {
 		const getTaskList = async () => {
@@ -15,7 +23,7 @@ export default function Home() {
 		getTaskList();
 	}, []);
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!task) return;
 		try {
@@ -27,7 +35,7 @@ export default function Home() {
 		}
 	};
 
-	const handleDelete = async (id) => {
+	const handleDelete = async (id: number) => {
 		try {
 			await axios.delete(`http://localhost:3000/api/todos/${id}`);
 			setTaskList(await getTasks());
@@ -36,14 +44,14 @@ export default function Home() {
 		}
 	};
 
-	const handleComplete = async (id, done) => {
+	const handleComplete = async (id: number, done: boolean) => {
 		try {
-			await axios.patch(`http://localhost:3000/api/todos/${id}`, {done});
+			await axios.patch(`http://localhost:3000/api/todos/${id}`, { done });
 			setTaskList(await getTasks());
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	return (
 		<div className='bg-slate-200 w-full h-screen flex justify-center items-center'>
@@ -70,7 +78,11 @@ export default function Home() {
 					</button>
 				</form>
 				{taskList.length > 0 && (
-					<TaskList taskList={taskList} handleDelete={handleDelete} handleComplete={handleComplete}/>
+					<TaskList
+						taskList={taskList}
+						handleDelete={handleDelete}
+						handleComplete={handleComplete}
+					/>
 				)}
 			</main>
 		</div>
