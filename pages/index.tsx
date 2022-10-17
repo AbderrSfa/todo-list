@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import {
-	ChangeEvent,
 	FormEvent,
-	FormEventHandler,
 	useEffect,
 	useState,
 } from 'react';
@@ -14,7 +12,7 @@ import Task from '../helpers/typings';
 
 export default function Home() {
 	const [task, setTask] = useState('');
-	const [taskList, setTaskList] = useState<Task[]>([]);
+	const [taskList, setTaskList] = useState<Task[] | undefined>([]);
 
 	useEffect(() => {
 		const getTaskList = async () => {
@@ -77,13 +75,13 @@ export default function Home() {
 						Submit
 					</button>
 				</form>
-				{taskList.length > 0 && (
+				{taskList && taskList.length > 0 ? (
 					<TaskList
 						taskList={taskList}
 						handleDelete={handleDelete}
 						handleComplete={handleComplete}
 					/>
-				)}
+				) : null}
 			</main>
 		</div>
 	);
