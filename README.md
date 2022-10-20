@@ -1,16 +1,16 @@
-# Todo List
+# ✅ Todo List
 
 This is a simple and elegant website for you to store your tasks and todos in. Enjoy.
 
-## Backend
+## 🔌 Backend
 
-The backend uses Node.JS and Express.JS to run a server on port 4040. The data is kept in a .JSON file.
+The backend uses next.js. The data is kept in a .JSON file.
 
-## Frontend
+## 🖼 Frontend
 
 The frontend was made using next.js and react, and styled with tailwindCSS.
 
-## Usage
+## ⚙️ Usage
 
 There is a Makefile in the root directory.
 - Run `make` to install all npm packages for the frontend and backend.
